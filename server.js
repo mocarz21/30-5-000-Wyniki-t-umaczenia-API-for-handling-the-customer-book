@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors');
 
 
 // const db = [
@@ -15,6 +16,7 @@ const seatsRoutes = require('./routes/seats.routes');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors())
 
 
 app.use('/api', testimonialsRoutes)  // jeżeli zrobię /testimonials nie działa czemu ?? musze dac dostep do wszystkich zaczynajacych sie od ?

@@ -25,18 +25,19 @@ router.route('/seats').post((req, res) => {
 router.route('/seats/:id').put((req,res)=>{
     const object={id: parseInt(req.params.id), day: req.body.day, seat: req.body.seat, client: req.body.client,email: req.body.email} 
     const abc = parseInt(req.params.id)
-    res.json(db.seats.map(element =>{
+    db.seats = db.seats.map(element =>{
         if(element.id === abc){
-            object
+            return object
         }else{
-            element
+            return element
         }
-    }))
+    })
+    res.json(object)
 })
 router.route('/seats/:id').delete((req,res) => {
     const abc = parseInt(req.params.id)
-    let deleted = db.seats.filter(element => element.id !== abc) //normalnie bym wstawił return
-    db = deleted  // czemu to mi nie działa
+    let deleted = db.seats.filter(element => element.id !== abc) 
+    db.seats = deleted  
     res.json(deleted); 
 
 })

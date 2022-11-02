@@ -25,24 +25,26 @@ router.route('/testimonials').post((req, res) => {
         random =random + random
     };
     const object={id: random, author: req.body.author, text: req.body.text} 
-    db.push(object)
+    db.testimonials.push(object)
   });
 
 router.route('/testimonials/:id').put((req,res)=>{
     const object={id: parseInt(req.params.id), author: req.body.author, text: req.body.text} 
     const abc = parseInt(req.params.id)
-    res.json(db.testimonials.map(element =>{
+    db.testimonials = db.testimonials.map(element =>{
         if(element.id === abc){
-            object
+            return object
         }else{
-            element
+            return element
         }
-    }))
+    })
+
+    res.json(object)
 })
 router.route('/testimonials/:id').delete((req,res) => {
     const abc = parseInt(req.params.id)
-    let deleted = db.testimonials.filter(element => element.id !== abc) //normalnie bym wstawił return
-    db.testimonials = deleted  // czemu to mi nie działa
+    let deleted = db.testimonials.filter(element => element.id !== abc) 
+    db.testimonials = deleted  
     res.json(deleted); 
 
 })
