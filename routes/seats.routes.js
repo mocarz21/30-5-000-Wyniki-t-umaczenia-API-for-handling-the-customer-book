@@ -21,6 +21,7 @@ router.route('/seats').post((req, res) => {
             random =random + random
         }; 
         db.seats.push(object)
+            req.io.emit('seatsUpdated',(db.seats))
       }else{
         return  res.send("The slot is already taken...")
       }

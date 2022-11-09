@@ -52,12 +52,12 @@ const OrderTicketForm = () => {
     }
   }
 
-  useEffect(()=>{
-    const timer = setInterval(()=>{
-      dispatch(loadSeatsRequest());
-    },12000);
-    return () => clearInterval(timer);
-  },);
+  // useEffect(()=>{
+  //   const timer = setInterval(()=>{
+  //     dispatch(loadSeatsRequest());
+  //   },12000);
+  //   return () => clearInterval(timer);
+  // },);
 
   
   

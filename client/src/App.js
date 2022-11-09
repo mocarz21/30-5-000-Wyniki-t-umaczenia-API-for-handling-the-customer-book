@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
+
 import MainLayout from './components/layout/MainLayout/MainLayout';
 
 // import routes
@@ -7,6 +8,7 @@ import Home from './components/pages/Home/HomePage';
 import NotFound from './components/pages/NotFound/NotFoundPage';
 import Prices from './components/pages/Prices/PricesPage';
 import Order from './components/pages/Order/OrderPage.js';
+
 
 const App = () => (
   <MainLayout>
