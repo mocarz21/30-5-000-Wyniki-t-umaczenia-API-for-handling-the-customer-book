@@ -7,29 +7,28 @@ import './SeatChooser.scss';
 import io from 'socket.io-client';
 
 const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
-  const [socket, setSocket] = useState(io('localhost:8000/'));
+  const [socket, setSocket] = useState(null);
   const dispatch = useDispatch();
   const seats = useSelector(getSeats);
   const requests = useSelector(getRequests);
   
 
-  socket.on('seatsUpdated',(seats)=> dispatch(loadSeats(seats)));
-
   useEffect(() => {
     dispatch(loadSeatsRequest());
   }, [dispatch])
 
-  // useEffect(()=>{
 
-    socket.on('connect', () => {
-      console.log('conect')
-    });
-
-    socket.on('disconnect', () => {
-      console.log('disconnect')
-    });
-      
-  // },[socket.connected])
+    useEffect(() => {
+      if (!socket) {
+        setSocket(io('//localhost:8000/'))
+      }
+  
+      if (socket) {
+        socket.on('seatsUpdated', (seats) => {
+          dispatch(loadSeats(seats))
+        });
+      }
+    }, [socket]);
   
   const isTaken = (seatId) => {
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
