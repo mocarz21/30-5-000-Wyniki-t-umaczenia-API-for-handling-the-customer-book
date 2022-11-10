@@ -1,20 +1,14 @@
 import { useSelector } from "react-redux";
-import { useState } from "react";
 
+const FreeSeats = ({chosenDay}) => {
 
-
-const FreeSeats = () => {
-
-    const allSeats = useSelector((store)=>store.seats)
+    const allSeats = useSelector((store)=>store.seats.data)
+    const daySeats = allSeats.filter(seat=>seat.day ===chosenDay)
     
-    //const count = allSeats.filtr(seat =>seat.id !== 0);
-
-
-    //const freSeats = 50 - allSeats.length + 1;
-    console.log('seats     ',allSeats)
+    const freSeats = 50 - daySeats.length;
     return(
         <div>
-            <h4>Seats{}/50</h4>
+            <h4>Free Seats {freSeats} / 50</h4>
         </div>
     )
 }
