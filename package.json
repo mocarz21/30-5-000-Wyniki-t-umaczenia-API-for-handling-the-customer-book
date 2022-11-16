@@ -14,6 +14,8 @@
     "@mocarz21/generator-id": "^1.0.5",
     "cors": "^2.8.5",
     "express": "4.17.1",
+    "mongodb": "3.3.2",
+    "mongoose": "5.7.1",
     "nodemon": "^2.0.20",
     "socket.io": "2.2.0",
     "uuid": "^9.0.0"

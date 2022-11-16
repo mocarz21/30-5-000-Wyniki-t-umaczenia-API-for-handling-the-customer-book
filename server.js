@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express.Router();
+//const router = express.Router();
 const cors = require('cors');
 const path = require('path')
 const socket = require('socket.io')
+const mongoose= require('mongoose')
 
 // const db = [
 //     { id: 1, author: 'John Doe', text: 'This company is worth every coin!' },
@@ -45,10 +46,23 @@ const server = app.listen(process.env.PORT || 8000, () => {
   console.log('Server is running on port: 8000');
 });
 
-const io=socket(server)
+const io = socket(server)
 
 io.on('connection',(socket)=>{
   console.log('New client! Its id – ' + socket.id)
 })
 
-module.exports = router;
+
+//conect to datebase//
+mongoose.connect('mongodb://localhost:27017/festivalDB', { useNewUrlParser: true });    
+const db = mongoose.connection;
+db.once('open', () => {
+  console.log('Connected to the database');
+});
+db.on('error', err => console.log('Error ' + err));
+
+// app.listen('8000', () => {
+//   console.log('Server is running on port: 3000');
+// });
+
+//module.exports = router;
