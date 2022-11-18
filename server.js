@@ -54,7 +54,7 @@ io.on('connection',(socket)=>{
 
 
 //conect to datebase//
-mongoose.connect('mongodb+srv://mocarz21:adasiek1@cluster0.yrwllsp.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: false });    
+mongoose.connect('mongodb+srv://mocarz21:adasiek1@cluster0.yrwllsp.mongodb.net/festivalDB?retryWrites=true&w=majority', { useNewUrlParser: false });    
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Connected to the database');
