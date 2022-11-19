@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path')
 const socket = require('socket.io')
 const mongoose= require('mongoose')
+const helmet = require('helmet');
 
 // const db = [
 //     { id: 1, author: 'John Doe', text: 'This company is worth every coin!' },
@@ -11,6 +12,7 @@ const mongoose= require('mongoose')
 //   ];
 
 const app = express();
+app.use(helmet());
 
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertsRoutes = require('./routes/concerts.routes');
@@ -54,7 +56,7 @@ io.on('connection',(socket)=>{
 
 
 //conect to datebase//
-mongoose.connect('mongodb+srv://mocarz21:adasiek1@cluster0.yrwllsp.mongodb.net/festivalDB?retryWrites=true&w=majority', { useNewUrlParser: false });    
+mongoose.connect('mongodb+srv://'+ process.env.MONGODB_USERNAME +':'+ process.env.MONGODB_PASSWORD +'@cluster0.yrwllsp.mongodb.net/festivalDB?retryWrites=true&w=majority', { useNewUrlParser: false });    
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Connected to the database');
